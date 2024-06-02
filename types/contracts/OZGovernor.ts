@@ -30,6 +30,7 @@ export interface OZGovernorInterface extends Interface {
       | "CLOCK_MODE"
       | "COUNTING_MODE"
       | "EXTENDED_BALLOT_TYPEHASH"
+      | "addStreamID"
       | "cancel(uint256)"
       | "cancel(address[],uint256[],bytes[],bytes32)"
       | "castVote"
@@ -41,6 +42,8 @@ export interface OZGovernorInterface extends Interface {
       | "eip712Domain"
       | "execute(address[],uint256[],bytes[],bytes32)"
       | "execute(uint256)"
+      | "getRemainingDepositedAmount"
+      | "getStreamID"
       | "getVotes"
       | "getVotesWithParams"
       | "hasVoted"
@@ -51,6 +54,7 @@ export interface OZGovernorInterface extends Interface {
       | "onERC1155BatchReceived"
       | "onERC1155Received"
       | "onERC721Received"
+      | "owner"
       | "proposalCount"
       | "proposalDeadline"
       | "proposalDetails"
@@ -69,6 +73,8 @@ export interface OZGovernorInterface extends Interface {
       | "quorumNumerator(uint256)"
       | "quorumNumerator()"
       | "relay"
+      | "renounceOwnership"
+      | "sablierV2Lockup"
       | "setLateQuorumVoteExtension"
       | "setProposalThreshold"
       | "setVotingDelay"
@@ -77,6 +83,7 @@ export interface OZGovernorInterface extends Interface {
       | "supportsInterface"
       | "timelock"
       | "token"
+      | "transferOwnership"
       | "updateQuorumNumerator"
       | "updateTimelock"
       | "version"
@@ -88,6 +95,7 @@ export interface OZGovernorInterface extends Interface {
     nameOrSignatureOrTopic:
       | "EIP712DomainChanged"
       | "LateQuorumVoteExtensionSet"
+      | "OwnershipTransferred"
       | "ProposalCanceled"
       | "ProposalCreated"
       | "ProposalExecuted"
@@ -100,6 +108,7 @@ export interface OZGovernorInterface extends Interface {
       | "VoteCastWithParams"
       | "VotingDelaySet"
       | "VotingPeriodSet"
+      | "addedstreamId"
   ): EventFragment;
 
   encodeFunctionData(
@@ -117,6 +126,10 @@ export interface OZGovernorInterface extends Interface {
   encodeFunctionData(
     functionFragment: "EXTENDED_BALLOT_TYPEHASH",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "addStreamID",
+    values: [BigNumberish, AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "cancel(uint256)",
@@ -167,6 +180,14 @@ export interface OZGovernorInterface extends Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "getRemainingDepositedAmount",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getStreamID",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "getVotes",
     values: [AddressLike, BigNumberish]
   ): string;
@@ -206,6 +227,7 @@ export interface OZGovernorInterface extends Interface {
     functionFragment: "onERC721Received",
     values: [AddressLike, AddressLike, BigNumberish, BytesLike]
   ): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "proposalCount",
     values?: undefined
@@ -279,6 +301,14 @@ export interface OZGovernorInterface extends Interface {
     values: [AddressLike, BigNumberish, BytesLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "renounceOwnership",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "sablierV2Lockup",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "setLateQuorumVoteExtension",
     values: [BigNumberish]
   ): string;
@@ -301,6 +331,10 @@ export interface OZGovernorInterface extends Interface {
   ): string;
   encodeFunctionData(functionFragment: "timelock", values?: undefined): string;
   encodeFunctionData(functionFragment: "token", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "transferOwnership",
+    values: [AddressLike]
+  ): string;
   encodeFunctionData(
     functionFragment: "updateQuorumNumerator",
     values: [BigNumberish]
@@ -330,6 +364,10 @@ export interface OZGovernorInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "EXTENDED_BALLOT_TYPEHASH",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "addStreamID",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -370,6 +408,14 @@ export interface OZGovernorInterface extends Interface {
     functionFragment: "execute(uint256)",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRemainingDepositedAmount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getStreamID",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "getVotes", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getVotesWithParams",
@@ -398,6 +444,7 @@ export interface OZGovernorInterface extends Interface {
     functionFragment: "onERC721Received",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "proposalCount",
     data: BytesLike
@@ -462,6 +509,14 @@ export interface OZGovernorInterface extends Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "relay", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "sablierV2Lockup",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "setLateQuorumVoteExtension",
     data: BytesLike
   ): Result;
@@ -484,6 +539,10 @@ export interface OZGovernorInterface extends Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "timelock", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "transferOwnership",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "updateQuorumNumerator",
     data: BytesLike
@@ -525,6 +584,19 @@ export namespace LateQuorumVoteExtensionSetEvent {
   export interface OutputObject {
     oldVoteExtension: bigint;
     newVoteExtension: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace OwnershipTransferredEvent {
+  export type InputTuple = [previousOwner: AddressLike, newOwner: AddressLike];
+  export type OutputTuple = [previousOwner: string, newOwner: string];
+  export interface OutputObject {
+    previousOwner: string;
+    newOwner: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -767,6 +839,19 @@ export namespace VotingPeriodSetEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
+export namespace addedstreamIdEvent {
+  export type InputTuple = [_StreamID: BigNumberish, user: AddressLike];
+  export type OutputTuple = [_StreamID: bigint, user: string];
+  export interface OutputObject {
+    _StreamID: bigint;
+    user: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
 export interface OZGovernor extends BaseContract {
   connect(runner?: ContractRunner | null): OZGovernor;
   waitForDeployment(): Promise<this>;
@@ -817,6 +902,12 @@ export interface OZGovernor extends BaseContract {
   COUNTING_MODE: TypedContractMethod<[], [string], "view">;
 
   EXTENDED_BALLOT_TYPEHASH: TypedContractMethod<[], [string], "view">;
+
+  addStreamID: TypedContractMethod<
+    [_streamID: BigNumberish, user: AddressLike],
+    [void],
+    "nonpayable"
+  >;
 
   "cancel(uint256)": TypedContractMethod<
     [proposalId: BigNumberish],
@@ -917,6 +1008,14 @@ export interface OZGovernor extends BaseContract {
     "payable"
   >;
 
+  getRemainingDepositedAmount: TypedContractMethod<
+    [_user: AddressLike],
+    [bigint],
+    "view"
+  >;
+
+  getStreamID: TypedContractMethod<[], [bigint], "view">;
+
   getVotes: TypedContractMethod<
     [account: AddressLike, timepoint: BigNumberish],
     [bigint],
@@ -981,6 +1080,8 @@ export interface OZGovernor extends BaseContract {
     [string],
     "nonpayable"
   >;
+
+  owner: TypedContractMethod<[], [string], "view">;
 
   proposalCount: TypedContractMethod<[], [bigint], "view">;
 
@@ -1086,6 +1187,10 @@ export interface OZGovernor extends BaseContract {
     "payable"
   >;
 
+  renounceOwnership: TypedContractMethod<[], [void], "nonpayable">;
+
+  sablierV2Lockup: TypedContractMethod<[], [string], "view">;
+
   setLateQuorumVoteExtension: TypedContractMethod<
     [newVoteExtension: BigNumberish],
     [void],
@@ -1122,6 +1227,12 @@ export interface OZGovernor extends BaseContract {
 
   token: TypedContractMethod<[], [string], "view">;
 
+  transferOwnership: TypedContractMethod<
+    [newOwner: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
   updateQuorumNumerator: TypedContractMethod<
     [newQuorumNumerator: BigNumberish],
     [void],
@@ -1156,6 +1267,13 @@ export interface OZGovernor extends BaseContract {
   getFunction(
     nameOrSignature: "EXTENDED_BALLOT_TYPEHASH"
   ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "addStreamID"
+  ): TypedContractMethod<
+    [_streamID: BigNumberish, user: AddressLike],
+    [void],
+    "nonpayable"
+  >;
   getFunction(
     nameOrSignature: "cancel(uint256)"
   ): TypedContractMethod<[proposalId: BigNumberish], [void], "nonpayable">;
@@ -1259,6 +1377,12 @@ export interface OZGovernor extends BaseContract {
     nameOrSignature: "execute(uint256)"
   ): TypedContractMethod<[proposalId: BigNumberish], [void], "payable">;
   getFunction(
+    nameOrSignature: "getRemainingDepositedAmount"
+  ): TypedContractMethod<[_user: AddressLike], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getStreamID"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
     nameOrSignature: "getVotes"
   ): TypedContractMethod<
     [account: AddressLike, timepoint: BigNumberish],
@@ -1333,6 +1457,9 @@ export interface OZGovernor extends BaseContract {
     [string],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "owner"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "proposalCount"
   ): TypedContractMethod<[], [bigint], "view">;
@@ -1428,6 +1555,12 @@ export interface OZGovernor extends BaseContract {
     "payable"
   >;
   getFunction(
+    nameOrSignature: "renounceOwnership"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "sablierV2Lockup"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "setLateQuorumVoteExtension"
   ): TypedContractMethod<
     [newVoteExtension: BigNumberish],
@@ -1459,6 +1592,9 @@ export interface OZGovernor extends BaseContract {
   getFunction(
     nameOrSignature: "token"
   ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "transferOwnership"
+  ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "updateQuorumNumerator"
   ): TypedContractMethod<
@@ -1492,6 +1628,13 @@ export interface OZGovernor extends BaseContract {
     LateQuorumVoteExtensionSetEvent.InputTuple,
     LateQuorumVoteExtensionSetEvent.OutputTuple,
     LateQuorumVoteExtensionSetEvent.OutputObject
+  >;
+  getEvent(
+    key: "OwnershipTransferred"
+  ): TypedContractEvent<
+    OwnershipTransferredEvent.InputTuple,
+    OwnershipTransferredEvent.OutputTuple,
+    OwnershipTransferredEvent.OutputObject
   >;
   getEvent(
     key: "ProposalCanceled"
@@ -1577,6 +1720,13 @@ export interface OZGovernor extends BaseContract {
     VotingPeriodSetEvent.OutputTuple,
     VotingPeriodSetEvent.OutputObject
   >;
+  getEvent(
+    key: "addedstreamId"
+  ): TypedContractEvent<
+    addedstreamIdEvent.InputTuple,
+    addedstreamIdEvent.OutputTuple,
+    addedstreamIdEvent.OutputObject
+  >;
 
   filters: {
     "EIP712DomainChanged()": TypedContractEvent<
@@ -1599,6 +1749,17 @@ export interface OZGovernor extends BaseContract {
       LateQuorumVoteExtensionSetEvent.InputTuple,
       LateQuorumVoteExtensionSetEvent.OutputTuple,
       LateQuorumVoteExtensionSetEvent.OutputObject
+    >;
+
+    "OwnershipTransferred(address,address)": TypedContractEvent<
+      OwnershipTransferredEvent.InputTuple,
+      OwnershipTransferredEvent.OutputTuple,
+      OwnershipTransferredEvent.OutputObject
+    >;
+    OwnershipTransferred: TypedContractEvent<
+      OwnershipTransferredEvent.InputTuple,
+      OwnershipTransferredEvent.OutputTuple,
+      OwnershipTransferredEvent.OutputObject
     >;
 
     "ProposalCanceled(uint256)": TypedContractEvent<
@@ -1731,6 +1892,17 @@ export interface OZGovernor extends BaseContract {
       VotingPeriodSetEvent.InputTuple,
       VotingPeriodSetEvent.OutputTuple,
       VotingPeriodSetEvent.OutputObject
+    >;
+
+    "addedstreamId(uint256,address)": TypedContractEvent<
+      addedstreamIdEvent.InputTuple,
+      addedstreamIdEvent.OutputTuple,
+      addedstreamIdEvent.OutputObject
+    >;
+    addedstreamId: TypedContractEvent<
+      addedstreamIdEvent.InputTuple,
+      addedstreamIdEvent.OutputTuple,
+      addedstreamIdEvent.OutputObject
     >;
   };
 }

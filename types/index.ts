@@ -3,6 +3,8 @@
 /* eslint-disable */
 import type * as openzeppelin from "./@openzeppelin";
 export type { openzeppelin };
+import type * as sablier from "./@sablier";
+export type { sablier };
 import type * as contracts from "./contracts";
 export type { contracts };
 export * as factories from "./factories";
@@ -10,6 +12,8 @@ export type { AccessControl } from "./@openzeppelin/contracts/access/AccessContr
 export { AccessControl__factory } from "./factories/@openzeppelin/contracts/access/AccessControl__factory";
 export type { IAccessControl } from "./@openzeppelin/contracts/access/IAccessControl";
 export { IAccessControl__factory } from "./factories/@openzeppelin/contracts/access/IAccessControl__factory";
+export type { Ownable } from "./@openzeppelin/contracts/access/Ownable";
+export { Ownable__factory } from "./factories/@openzeppelin/contracts/access/Ownable__factory";
 export type { GovernorCountingSimple } from "./@openzeppelin/contracts/governance/extensions/GovernorCountingSimple";
 export { GovernorCountingSimple__factory } from "./factories/@openzeppelin/contracts/governance/extensions/GovernorCountingSimple__factory";
 export type { GovernorPreventLateQuorum } from "./@openzeppelin/contracts/governance/extensions/GovernorPreventLateQuorum";
@@ -68,6 +72,10 @@ export type { IERC20Permit } from "./@openzeppelin/contracts/token/ERC20/extensi
 export { IERC20Permit__factory } from "./factories/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit__factory";
 export type { IERC20 } from "./@openzeppelin/contracts/token/ERC20/IERC20";
 export { IERC20__factory } from "./factories/@openzeppelin/contracts/token/ERC20/IERC20__factory";
+export type { IERC721Metadata } from "./@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata";
+export { IERC721Metadata__factory } from "./factories/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata__factory";
+export type { IERC721 } from "./@openzeppelin/contracts/token/ERC721/IERC721";
+export { IERC721__factory } from "./factories/@openzeppelin/contracts/token/ERC721/IERC721__factory";
 export type { IERC721Receiver } from "./@openzeppelin/contracts/token/ERC721/IERC721Receiver";
 export { IERC721Receiver__factory } from "./factories/@openzeppelin/contracts/token/ERC721/IERC721Receiver__factory";
 export type { ERC721Holder } from "./@openzeppelin/contracts/token/ERC721/utils/ERC721Holder";
@@ -98,6 +106,16 @@ export type { Checkpoints } from "./@openzeppelin/contracts/utils/structs/Checkp
 export { Checkpoints__factory } from "./factories/@openzeppelin/contracts/utils/structs/Checkpoints__factory";
 export type { DoubleEndedQueue } from "./@openzeppelin/contracts/utils/structs/DoubleEndedQueue";
 export { DoubleEndedQueue__factory } from "./factories/@openzeppelin/contracts/utils/structs/DoubleEndedQueue__factory";
+export type { IAdminable } from "./@sablier/v2-core/src/interfaces/IAdminable";
+export { IAdminable__factory } from "./factories/@sablier/v2-core/src/interfaces/IAdminable__factory";
+export type { ISablierV2Base } from "./@sablier/v2-core/src/interfaces/ISablierV2Base";
+export { ISablierV2Base__factory } from "./factories/@sablier/v2-core/src/interfaces/ISablierV2Base__factory";
+export type { ISablierV2Comptroller } from "./@sablier/v2-core/src/interfaces/ISablierV2Comptroller";
+export { ISablierV2Comptroller__factory } from "./factories/@sablier/v2-core/src/interfaces/ISablierV2Comptroller__factory";
+export type { ISablierV2Lockup } from "./@sablier/v2-core/src/interfaces/ISablierV2Lockup";
+export { ISablierV2Lockup__factory } from "./factories/@sablier/v2-core/src/interfaces/ISablierV2Lockup__factory";
+export type { ISablierV2NFTDescriptor } from "./@sablier/v2-core/src/interfaces/ISablierV2NFTDescriptor";
+export { ISablierV2NFTDescriptor__factory } from "./factories/@sablier/v2-core/src/interfaces/ISablierV2NFTDescriptor__factory";
 export type { ERC20Token } from "./contracts/clock/ERC20Token";
 export { ERC20Token__factory } from "./factories/contracts/clock/ERC20Token__factory";
 export type { OZGovernor } from "./contracts/clock/OZGovernor";

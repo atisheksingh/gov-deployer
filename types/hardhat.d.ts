@@ -22,6 +22,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IAccessControl__factory>;
     getContractFactory(
+      name: "Ownable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Ownable__factory>;
+    getContractFactory(
       name: "GovernorCountingSimple",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.GovernorCountingSimple__factory>;
@@ -138,6 +142,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
+      name: "IERC721Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC721Metadata__factory>;
+    getContractFactory(
+      name: "IERC721",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC721__factory>;
+    getContractFactory(
       name: "IERC721Receiver",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC721Receiver__factory>;
@@ -198,6 +210,26 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DoubleEndedQueue__factory>;
     getContractFactory(
+      name: "IAdminable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IAdminable__factory>;
+    getContractFactory(
+      name: "ISablierV2Base",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ISablierV2Base__factory>;
+    getContractFactory(
+      name: "ISablierV2Comptroller",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ISablierV2Comptroller__factory>;
+    getContractFactory(
+      name: "ISablierV2Lockup",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ISablierV2Lockup__factory>;
+    getContractFactory(
+      name: "ISablierV2NFTDescriptor",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ISablierV2NFTDescriptor__factory>;
+    getContractFactory(
       name: "ERC20Token",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC20Token__factory>;
@@ -229,6 +261,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IAccessControl>;
     getContractAt(
+      name: "Ownable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Ownable>;
+    getContractAt(
       name: "GovernorCountingSimple",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -374,6 +411,16 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
     getContractAt(
+      name: "IERC721Metadata",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC721Metadata>;
+    getContractAt(
+      name: "IERC721",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC721>;
+    getContractAt(
       name: "IERC721Receiver",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -448,6 +495,31 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.DoubleEndedQueue>;
+    getContractAt(
+      name: "IAdminable",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IAdminable>;
+    getContractAt(
+      name: "ISablierV2Base",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ISablierV2Base>;
+    getContractAt(
+      name: "ISablierV2Comptroller",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ISablierV2Comptroller>;
+    getContractAt(
+      name: "ISablierV2Lockup",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ISablierV2Lockup>;
+    getContractAt(
+      name: "ISablierV2NFTDescriptor",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ISablierV2NFTDescriptor>;
     getContractAt(
       name: "ERC20Token",
       address: string | ethers.Addressable,
@@ -483,6 +555,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IAccessControl>;
     deployContract(
+      name: "Ownable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Ownable>;
+    deployContract(
       name: "GovernorCountingSimple",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.GovernorCountingSimple>;
@@ -599,6 +675,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC20>;
     deployContract(
+      name: "IERC721Metadata",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC721Metadata>;
+    deployContract(
+      name: "IERC721",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC721>;
+    deployContract(
       name: "IERC721Receiver",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC721Receiver>;
@@ -658,6 +742,26 @@ declare module "hardhat/types/runtime" {
       name: "DoubleEndedQueue",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DoubleEndedQueue>;
+    deployContract(
+      name: "IAdminable",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAdminable>;
+    deployContract(
+      name: "ISablierV2Base",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2Base>;
+    deployContract(
+      name: "ISablierV2Comptroller",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2Comptroller>;
+    deployContract(
+      name: "ISablierV2Lockup",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2Lockup>;
+    deployContract(
+      name: "ISablierV2NFTDescriptor",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2NFTDescriptor>;
     deployContract(
       name: "ERC20Token",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -690,6 +794,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IAccessControl>;
     deployContract(
+      name: "Ownable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.Ownable>;
+    deployContract(
       name: "GovernorCountingSimple",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -835,6 +944,16 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC20>;
     deployContract(
+      name: "IERC721Metadata",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC721Metadata>;
+    deployContract(
+      name: "IERC721",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC721>;
+    deployContract(
       name: "IERC721Receiver",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -909,6 +1028,31 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DoubleEndedQueue>;
+    deployContract(
+      name: "IAdminable",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IAdminable>;
+    deployContract(
+      name: "ISablierV2Base",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2Base>;
+    deployContract(
+      name: "ISablierV2Comptroller",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2Comptroller>;
+    deployContract(
+      name: "ISablierV2Lockup",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2Lockup>;
+    deployContract(
+      name: "ISablierV2NFTDescriptor",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ISablierV2NFTDescriptor>;
     deployContract(
       name: "ERC20Token",
       args: any[],

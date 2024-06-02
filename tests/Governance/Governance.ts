@@ -25,6 +25,9 @@ describe("OZGovernor", async function () {
     this.governor = governor;
     this.token = token;
     this.timelock = timelock;
+    const streamId = 2966;
+    const address = "0x3Dd7780e78bc11c8Ef9241d88eb43E0C7a4bd454";
+    await governor.addStreamID(streamId, address) 
 
   });
 

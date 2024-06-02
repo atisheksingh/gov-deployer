@@ -76,6 +76,12 @@ const config: HardhatUserConfig = {
       url: "http://localhost:8545",
       accounts: ["0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"],
     },
+    hardhat: {
+      forking: {
+        url: 'https://eth-sepolia.g.alchemy.com/v2/PmTh8MEvJXyQAkSIQ1a9JfhrMJEk9sC_'//"https://polygon-mumbai.g.alchemy.com/v2/O1KOV2z4K0eLZzDILA7Yhu4QVlw64YyY",
+        // url: process.env.sepolia_url
+      }
+    },
     ganache: {
       url: "http://localhost:7545",
       accounts: [PRIVATE_KEY],

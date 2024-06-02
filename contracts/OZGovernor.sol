@@ -10,13 +10,15 @@ import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorPreventLateQuorum.sol";
-
+import "@sablier/v2-core/src/interfaces/ISablierV2Lockup.sol";
+import "hardhat/console.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 /**
  * @title OZGovernor
  * @dev OZGovernor is a smart contract that extends OpenZeppelin's Governor with additional features
  * for voting, timelock, and quorum.
  */
-contract OZGovernor is Governor, GovernorSettings, GovernorCountingSimple, GovernorStorage, GovernorVotes,GovernorPreventLateQuorum, GovernorVotesQuorumFraction, GovernorTimelockControl {
+contract OZGovernor is Ownable ,Governor, GovernorSettings, GovernorCountingSimple, GovernorStorage, GovernorVotes,GovernorPreventLateQuorum, GovernorVotesQuorumFraction, GovernorTimelockControl {
     
     /**
      * @dev Initializes the OZGovernor contract.
@@ -41,6 +43,7 @@ contract OZGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         GovernorVotesQuorumFraction(_quorumNumeratorValue)
         GovernorPreventLateQuorum(_initialVoteExtension)
         GovernorTimelockControl(_timelock)
+        Ownable(_msgSender()) 
     {}
 
     /**
@@ -209,6 +212,7 @@ contract OZGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         virtual
         override(Governor, GovernorPreventLateQuorum)
         returns (uint256) {
+
         return super._castVote(proposalId, account, support, reason,params);
     }
 
@@ -239,4 +243,35 @@ contract OZGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
     {
         return super._executor();
     }
+
+    ISablierV2Lockup public sablierV2Lockup = ISablierV2Lockup(address(0x7a43F8a888fa15e68C103E18b0439Eb1e98E4301)); // interface of sablier 
+
+    mapping(address => uint256) internal _StreamID;
+
+    function getRemainingDepositedAmount(address _user) public view returns (uint128) {
+        uint256 streamId = _StreamID[_user];
+        uint128 withdrawnAmount = sablierV2Lockup.getWithdrawnAmount(streamId);// streamID 
+        uint128 depositedAmount = sablierV2Lockup.getDepositedAmount(streamId);
+        require(withdrawnAmount <= depositedAmount, "Invalid stream state: withdrawn > deposited"); 
+        return depositedAmount - withdrawnAmount;
+    }
+
+    function getStreamID() external  view returns(uint256){
+        return _StreamID[msg.sender];
+    }
+
+    event addedstreamId(uint256 _StreamID, address user);
+
+    function addStreamID(uint256 _streamID, address user) external  {
+        _StreamID[user]= _streamID;
+        emit addedstreamId(_streamID, user);
+    }
+
+
+    function castVote(uint256 proposalId, uint8 support) public virtual override returns (uint256) {
+        require(getRemainingDepositedAmount(msg.sender) > 0, "remaining balance is not sufficient to vote"); 
+        return _castVote(proposalId, _msgSender(), support, "");
+    }
+
+
 }
